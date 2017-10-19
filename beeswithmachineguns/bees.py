@@ -998,7 +998,8 @@ def _hurl_attack(params):
             options += ' -H \"Cookie: %s;\"' % params['cookies']
 
         if params['basic_auth'] is not '':
-            options += ' -H \"Authorization : Basic %s\"' % params['basic_auth']
+            auth = base64.encodestring(params['basic_auth']).replace('\n', '')
+            options += ' -H \"Authorization : Basic %s\"' % auth
 
         if params['seconds']:
             options += ' -l %d' % params['seconds']
